@@ -20,6 +20,7 @@ class Introduction(models.Model):
     repository = models.ForeignKey(Repository, on_delete=models.CASCADE)    #intro1.repository
     version = models.IntegerField(default=1)
     contents = models.TextField()
+    access = models.IntegerField(default=1)   #0: private, 1: public
     #intro1.comment_set.all -> 연결된 댓글들을 다 가져옴
 
     def __str__(self):
