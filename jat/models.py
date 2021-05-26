@@ -10,6 +10,8 @@ class Repository(models.Model):
     updated = models.DateTimeField(auto_now=True)
     #repo1.introduction_set.all -> 연결된 자소서들 다 가져옴
 
+    class Meta:
+        verbose_name_plural = 'Repositories'
     def __str__(self):
         return self.name
 
