@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from jat.models import *
+
+admin.site.register(Repository)
+admin.site.register(Introduction)
+admin.site.register(Comment)
