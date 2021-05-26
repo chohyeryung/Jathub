@@ -6,6 +6,7 @@ from django.db import models
 class Repository(models.Model):
     name = models.CharField(max_length=60)
     description = models.CharField(max_length=200)
+    deadline = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     #repo1.introduction_set.all -> 연결된 자소서들 다 가져옴
