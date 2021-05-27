@@ -13,6 +13,8 @@ class Repository(models.Model):
 
     class Meta:
         verbose_name_plural = 'Repositories'
+        ordering = ['deadline']
+
     def __str__(self):
         return self.name
 
@@ -23,6 +25,9 @@ class Introduction(models.Model):
     access = models.IntegerField(default=1)   #0: private, 1: public
     #intro1.comment_set.all -> 연결된 댓글들을 다 가져옴
 
+    class Meta:
+        ordering = ['-version']
+
     def __str__(self):
         return f'{self.version} {self.contents}'
 
@@ -31,6 +36,9 @@ class Comment(models.Model):
     comment = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created']
 
     def __str__(self):
         return self.comment
