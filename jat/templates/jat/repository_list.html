@@ -3,8 +3,20 @@
 {% block title %}List Repository{% endblock %}
 
 {% block content %} {# ctrl alt l -> 포멧 맞추기 #}
-    {% for repository in repository_list %}
-        {#        repository_list는 generic에서 제공되는 것임. 맘대로 바꿀 수 없음#}
-        {{ repository }}
-    {% endfor %}
+    {{ repository_list.count }} Repository
+    <table border="1">
+        <tbody>
+        {% for repository in repository_list %}
+            <tr>
+                <td>수정</td>
+                <td>{{ repository.name }}</td>
+                <td>마감: {{ repository.deadline }}</td>
+                <td>삭제</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}
+
+{#        repository_list는 generic에서 제공되는 것임. 맘대로 바꿀 수 없음#}
