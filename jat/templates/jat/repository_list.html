@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}List Repository{% endblock %}
+
+{% block content %} {# ctrl alt l -> 포멧 맞추기 #}
+    {% for repository in repository_list %}
+        {#        repository_list는 generic에서 제공되는 것임. 맘대로 바꿀 수 없음#}
+        {{ repository }}
+    {% endfor %}
+{% endblock %}
