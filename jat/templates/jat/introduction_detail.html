@@ -3,7 +3,7 @@
 {% block title %}Detail Introduction{% endblock %}
 
 {% block content %}
-    {{ introduction.version }}
+    {{ introduction.contents }}
     <table border="1">
         <tbody>
         {% for intro in introduction.comment_set.all %}
