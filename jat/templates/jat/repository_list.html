@@ -4,6 +4,7 @@
 
 {% block content %} {# ctrl alt l -> 포멧 맞추기 #}
     {{ repository_list.count }} Repository
+    <a href="{% url 'jat:repository_add' %}">ADD Repository</a>
     <table border="1">
         <tbody>
         {% for repository in repository_list %}
