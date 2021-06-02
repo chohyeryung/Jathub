@@ -12,6 +12,7 @@ class RepositoryListView(generic.ListView):
 class RepositoryDetailView(generic.DetailView):
     model = Repository
 
+
 class RepositoryCreateView(generic.CreateView):
     model = Repository
     fields = ['name', 'description', 'deadline']    #'__all__' 전체를 읽어옴
@@ -19,6 +20,18 @@ class RepositoryCreateView(generic.CreateView):
     success_url = reverse_lazy('jat:repository_list')
 
 
+class RepositoryUpdateView(generic.UpdateView):
+    model = Repository
+    fields = ['name', 'description', 'deadline']  # '__all__' 전체를 읽어옴
+    template_name_suffix = '_update'
+    success_url = reverse_lazy('jat:repository_list')
+
+
+class RepositoryDeleteView(generic.DeleteView):
+    model = Repository
+    success_url = reverse_lazy('jat:repository_list')
+
 
 class IntroductionDetailView(generic.DetailView):
     model = Introduction
+
