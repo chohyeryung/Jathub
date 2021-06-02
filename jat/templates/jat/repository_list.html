@@ -9,10 +9,10 @@
         <tbody>
         {% for repository in repository_list %}
             <tr>
-                <td>수정</td>
-                <td><a href="{% url 'jat:repository_detail' pk=repository.id%}">{{ repository.name }}</a></td>
+                <td><a href="{% url 'jat:repository_modify' pk=repository.id %}">수정</a></td>
+                <td><a href="{% url 'jat:repository_detail' pk=repository.id %}">{{ repository.name }}</a></td>
                 <td>마감: {{ repository.deadline }}</td>
-                <td>삭제</td>
+                <td><a href="{% url 'jat:repository_delete' pk=repository.id %}">삭제</a></td>
             </tr>
         {% endfor %}
         </tbody>

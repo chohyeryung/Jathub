@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Delete Repository{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ repository }}를 삭제하시겠습니까?<br>
+        <button type="submit">Delete</button>
+        <button type="button" onclick="history.back();">Cancel</button>
+    </form>
+{% endblock %}
