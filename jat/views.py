@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
-from jat.models import Repository, Introduction
+from jat.models import Repository, Introduction, Comment
 
 
 class RepositoryListView(generic.ListView):
@@ -69,7 +69,7 @@ class IntroductionUpdateView(generic.UpdateView):
 
 class IntroductionDeleteView(generic.DeleteView):
     model = Introduction
-    success_url = reverse_lazy('jat:repository_detail')
+    # success_url = reverse_lazy('jat:repository_detail')
 
     def get_initial(self):
         repository = get_object_or_404(Repository, pk=self.kwargs['repository_pk'])
@@ -77,3 +77,27 @@ class IntroductionDeleteView(generic.DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('jat:repository_detail', kwargs={'pk': self.kwargs['repository_pk']})
+
+class CommentCreateView(generic.CreateView):
+    model = Comment
+    fields = ['introduction', 'comment']
+    template_name_suffix = '_create'
+
+    def get_success_url(self):
+        return reverse_lazy('jat:introduction_detail', kwargs={'repository_pk': self.kwargs['repository_pk'],
+                                                               'pk': self.kwargs['introduction_pk']})
+
+class CommentUpdateView(generic.UpdateView):
+    model = Comment
+    fields = ['introduction', 'comment']
+    template_name_suffix = '_update'
+
+    def get_success_url(self):
+        return reverse_lazy('jat:introduction_detail', kwargs={'repository_pk': self.kwargs['repository_pk'], 'pk': self.kwargs['introduction_pk']})
+
+
+class CommentDeleteView(generic.DeleteView):
+    model = Comment
+
+    def get_success_url(self):
+        return reverse_lazy('jat:introduction_detail', kwargs={'repository_pk': self.kwargs['repository_pk'], 'pk': self.kwargs['introduction_pk']})
