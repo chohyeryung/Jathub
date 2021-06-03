@@ -58,6 +58,15 @@ class IntroductionCreateView(generic.CreateView):
         return reverse_lazy('jat:repository_detail', kwargs={'pk': self.kwargs['repository_pk']})
 
 
+class IntroductionUpdateView(generic.UpdateView):
+    model = Introduction
+    fields = ['repository', 'version', 'contents', 'access']
+    template_name_suffix = '_update'
+
+    def get_success_url(self):
+        return reverse_lazy('jat:repository_detail', kwargs={'pk': self.kwargs['repository_pk']})
+
+
 class IntroductionDeleteView(generic.DeleteView):
     model = Introduction
     success_url = reverse_lazy('jat:repository_detail')
