@@ -4,15 +4,18 @@
 
 {% block content %}
     {{ introduction.contents }}
+    <td><a href="{% url 'jat:comment_add' repository_pk=introduction.repository.id introduction_pk=introduction.id%}">추가</a></td>
     <table border="1">
         <tbody>
-        {% for intro in introduction.comment_set.all %}
+        {% for comments in introduction.comment_set.all %}
             <tr>
-                <td>{{ intro.comment }}</td>
-                <td>수정</td>
-                <td>삭제</td>
+                <td>{{ comments.comment }}</td>
+                <td><a href="{% url 'jat:comment_update' repository_pk=introduction.repository.id introduction_pk=introduction.id pk=comments.id %}">수정</a></td>
+                <td><a href="{% url 'jat:comment_delete' repository_pk=introduction.repository.id introduction_pk=introduction.id pk=comments.id %}">삭제</a></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <h3><a href="{% url 'jat:repository_detail' pk=introduction.repository.id %}">repository로 가기</a></h3>
+
 {% endblock %}

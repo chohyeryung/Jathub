@@ -83,6 +83,10 @@ class CommentCreateView(generic.CreateView):
     fields = ['introduction', 'comment']
     template_name_suffix = '_create'
 
+    def get_initial(self):
+        introduction = get_object_or_404(Introduction, pk=self.kwargs['introduction_pk'])
+        return {'introduction': introduction}
+
     def get_success_url(self):
         return reverse_lazy('jat:introduction_detail', kwargs={'repository_pk': self.kwargs['repository_pk'],
                                                                'pk': self.kwargs['introduction_pk']})
@@ -98,6 +102,10 @@ class CommentUpdateView(generic.UpdateView):
 
 class CommentDeleteView(generic.DeleteView):
     model = Comment
+
+    def get_initial(self):
+        introduction = get_object_or_404(Introduction, pk=self.kwargs['introduction_pk'])
+        return {'introduction': introduction}
 
     def get_success_url(self):
         return reverse_lazy('jat:introduction_detail', kwargs={'repository_pk': self.kwargs['repository_pk'], 'pk': self.kwargs['introduction_pk']})
