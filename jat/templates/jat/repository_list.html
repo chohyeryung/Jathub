@@ -4,15 +4,15 @@
 
 {% block content %} {# ctrl alt l -> 포멧 맞추기 #}
     {{ repository_list.count }} Repository
-    <a href="{% url 'jat:repository_add' %}">ADD Repository</a>
-    <table border="1">
+    <a href="{% url 'jat:repository_add' %}"><i class="bi bi-plus-lg"></i></a>
+    <table class="table w-50">
         <tbody>
         {% for repository in repository_list %}
             <tr>
-                <td><a href="{% url 'jat:repository_modify' pk=repository.id %}">수정</a></td>
+                <td class="align-middle"><a href="{% url 'jat:repository_modify' pk=repository.id %}"><i class="bi bi-pen"></i></a></td>
                 <td><a href="{% url 'jat:repository_detail' pk=repository.id %}">{{ repository.name }}</a></td>
                 <td>마감: {{ repository.deadline }}</td>
-                <td><a href="{% url 'jat:repository_delete' pk=repository.id %}">삭제</a></td>
+                <td class="align-middle"><a href="{% url 'jat:repository_delete' pk=repository.id %}"><i class="bi bi-trash-fill"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>

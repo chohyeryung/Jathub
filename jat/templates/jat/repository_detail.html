@@ -4,13 +4,13 @@
 
 {% block content %}
     {{ repository.name }}
-    <a href="{% url 'jat:introduction_add' repository_pk=repository.id %}">Add Introduction</a>
-    <table border="1">
+    <a href="{% url 'jat:introduction_add' repository_pk=repository.id %}"><i class="bi bi-plus-circle-fill"></i></a>
+    <table class="table">
         <tbody>
         {% for introduction in repository.introduction_set.all %}
             <tr>
                 <td><a href="{% url 'jat:introduction_detail' repository_pk=repository.id pk=introduction.id %}">Version {{ introduction.version }}</a></td>
-                <td><a href="{% url 'jat:introduction_delete' repository_pk=repository.id pk=introduction.id%}">삭제</a></td>
+                <td><a href="{% url 'jat:introduction_delete' repository_pk=repository.id pk=introduction.id%}"><i class="bi bi-trash-fill"></i></a></td>
             </tr>
         {% endfor %}
         </tbody>
